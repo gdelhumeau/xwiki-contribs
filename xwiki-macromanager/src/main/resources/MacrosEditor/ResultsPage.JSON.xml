@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xwikidoc>
+<web>MacrosEditor</web>
+<name>ResultsPage.JSON</name>
+<language></language>
+<defaultLanguage>en</defaultLanguage>
+<translation>0</translation>
+<parent>MacrosEditor.WebHome</parent>
+<creator>XWiki.Admin</creator>
+<author>XWiki.Admin</author>
+<customClass></customClass>
+<contentAuthor>XWiki.Admin</contentAuthor>
+<creationDate>1324559400000</creationDate>
+<date>1324559400000</date>
+<contentUpdateDate>1324559400000</contentUpdateDate>
+<version>1.1</version>
+<title>ResultsPage</title>
+<template></template>
+<defaultTemplate></defaultTemplate>
+<validationScript></validationScript>
+<comment></comment>
+<minorEdit>false</minorEdit>
+<syntaxId>xwiki/2.1</syntaxId>
+<hidden>false</hidden>
+<content>{{velocity output="false"}}
+#**
+* This is the JSON results page for MacrosEditors livetable
+*
+* @author Guillaume Delhumeau (guillaume.delhumeau@xwiki.com)
+*#
+
+## === Set the JSON Content Type ===
+#if("$!{request.xpage}" == 'plain')
+$response.setContentType('application/json')
+#end
+
+## === Offset = item # at which to start displaying data ===
+#set($offset = 0)
+#if($request.get('offset') != '')
+  #set($offset = $util.parseInt($request.get('offset')))
+  ## offset starts from 0 in velocity and 1 in javascript
+  #set($offset = $offset - 1)
+  #if($offset &lt; 0)
+    #set($offset = 0)
+  #end
+#end
+
+## === Limit = # of items to display ===
+#set($limit = 15)
+#if($request.get('limit')!= '')
+  #set($limit = $util.parseInt($request.get('limit')))
+  #if($limit &lt; 0)
+    #set($limit = 15)
+  #end
+#end
+
+## === Tag = one parameter per tag ===
+#if($request.tag)
+  #foreach($tag in $request.getParameterValues('tag'))
+    ## TODO: Add code to filter items based on the selected tags
+  #end
+#end
+
+## === Sort ===
+#set($orderby = "macroid.value")
+#set($order = "$!request.sort")
+#if($order != '')
+  #if($order == 'id')
+    #set($orderby = "macroid.value")
+  #elseif($order == 'name')
+    #set($orderby = "macroname.value")
+  #elseif($order == 'description')
+    #set($orderby = "description.value")
+  #elseif($order == 'visibility')
+    #set($orderby = "visibility.value")
+  #elseif($order == 'page')
+    #set($orderby = "doc.fullName")
+  #end
+
+## === Sort direction ===
+  #set($orderDirection = "$!{request.get('dir').toLowerCase()}")
+  #if("$!orderDirection" != '' &amp;&amp; "$!orderDirection" != 'asc')
+    #set($orderDirection = 'desc')
+  #end
+  #set($orderby = $orderby + " " + $orderDirection)
+#end
+
+## === Filters ===
+#set( $filterHQL = "")
+
+## === Search by macro.id
+#set( $filterMacroId = "$!{request.get('id')}" )
+#if($filterMacroId != '')
+#set($filterMacroId = $filterMacroId.toLowerCase()) 
+#set($filterHQL = $filterHQL + " AND LOWER(macroid.value) LIKE '%$filterMacroId%'" )
+#end
+
+## === Search by macro.name
+#set( $filterMacroName = "$!{request.get('name')}" )
+#if($filterMacroName != '')
+#set($filterMacroName = $filterMacroName.toLowerCase())
+#set($filterHQL = $filterHQL + " AND LOWER(macroname.value) LIKE '%$filterMacroName%'" )
+#end
+
+## === Search by doc.fullName
+#set( $filterDocName = "$!{request.get('page')}" )
+#if($filterDocName != '')
+#set($filterDocName = $filterDocName.toLowerCase())
+#set($filterHQL = $filterHQL + " AND LOWER(doc.fullName) LIKE '%$filterDocName%'" )
+#end
+
+## === Search by macro.description
+#set( $filterMacroDesc = "$!{request.get('description')}" )
+#if($filterMacroDesc != '')
+#set($filterMacroDesc = $filterMacroDesc.toLowerCase())
+#set($filterHQL = $filterHQL + " AND LOWER(description.value) LIKE '%$filterMacroDesc%'" )
+#end
+
+## === Search by macro.visibility
+#set( $filterVisibility = "$!{request.get('visibility')}" )
+#if($filterVisibility != '')
+#set($filterVisibility = $filterVisibility.toLowerCase())
+#set($filterHQL = $filterHQL + " AND LOWER(visibility.value) LIKE '%$filterVisibility%'" )
+#end
+
+## === Get the visibility values ===
+#set( $macroClass = $xwiki.getClass('XWiki.WikiMacroClass') )
+#set( $visibilityProp = $macroClass.get('visibility') )
+#set( $listValues = $visibilityProp.getListValues() )
+
+## === Query ===
+#set( $query = "SELECT DISTINCT macro.id, macroid.value, macroname.value, description.value, visibility.value, doc.fullName FROM Document doc, BaseObject macro, StringProperty macroname, StringProperty visibility, LargeStringProperty description, StringProperty macroid WHERE macro.className='XWiki.WikiMacroClass' AND doc.fullName = macro.name AND visibility.id = macro.id AND description.id = macro.id AND macroid.id = macro.id AND macroname.id = macro.id AND visibility.name='visibility' AND description.name='description' AND macroid.name='id' AND macroname.name='name' $filterHQL ORDER BY $orderby" )
+#set( $r = $services.query.xwql($query).setOffset($offset).setLimit($limit).execute() )
+
+## === Query Count ===
+#set( $queryCount = "SELECT DISTINCT COUNT(macroid.value) FROM Document doc, BaseObject macro, StringProperty macroname, StringProperty visibility, LargeStringProperty description, StringProperty macroid WHERE macro.className='XWiki.WikiMacroClass' AND doc.fullName = macro.name AND visibility.id = macro.id AND description.id = macro.id AND macroid.id = macro.id AND macroname.id = macro.id AND visibility.name='visibility' AND description.name='description' AND macroid.name='id' AND macroname.name='name' $filterHQL" )
+#set( $countResult = $services.query.xwql($queryCount).execute() )
+#set( $countResult = $countResult[0] - 1 ) ## I don't know why -1
+{{/velocity}}
+{{velocity}} ## Output ON
+## === JSON ===
+{
+"totalrows": $countResult,
+"matchingtags": {},
+"tags" : [],
+"returnedrows":  $r.size(),
+"offset": $offset,
+"reqNo": $util.parseInt($request.reqNo),
+"rows": [
+
+## === Rows ===
+#foreach( $row in $r )
+  #set( $baseMacroId = $row[0] )
+  #set( $macroId     = $row[1] )
+  #set( $macroName   = $row[2] )
+  #set( $description = $row[3] )
+  #set( $visibility  = $row[4] )
+  #set( $docFullName = $row[5] )
+  #set( $macroClassId = "MacrosEditor.macro_" + $baseMacroId )
+  #if($velocityCount &gt; 1)
+  ,
+  #end
+  {
+  "doc_viewable" : "true",
+  "id": "$macroId",
+  "name": "$macroName",
+  "page": "$docFullName",
+  "description": "$description.replaceAll("\n", " ")",
+  "visibility": "&lt;select id=\"$macroClassId\" name=\"$macroClassId\" class=\"MacrosEditor.visibilitySelect\" size=\"1\"&gt; #foreach( $lv in $listValues) #if($lv == $visibility) &lt;option selected=\"selected\" value=\"$lv\" label=\"$lv\"&gt;$lv&lt;/option&gt; #else &lt;option value=\"$lv\" label=\"$lv\"&gt;$lv&lt;/option&gt; #end #end &lt;/select&gt;",
+  "link": "&lt;a class=\"action actionedit\" href=\"$xwiki.getURL($docFullName, "edit", "editor=object&amp;classname=XWiki.WikiMacroClass&amp;object=0")\" class=\"edit-all\"&gt;Edit&lt;/a&gt;"
+  }
+#end
+
+]
+}
+{{/velocity}}</content></xwikidoc>

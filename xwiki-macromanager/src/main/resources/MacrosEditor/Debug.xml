@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xwikidoc>
+<web>MacrosEditor</web>
+<name>Debug</name>
+<language></language>
+<defaultLanguage>en</defaultLanguage>
+<translation>0</translation>
+<parent>MacrosEditor.WebHome</parent>
+<creator>XWiki.Admin</creator>
+<author>XWiki.Admin</author>
+<customClass></customClass>
+<contentAuthor>XWiki.Admin</contentAuthor>
+<creationDate>1325498092000</creationDate>
+<date>1325498092000</date>
+<contentUpdateDate>1325498092000</contentUpdateDate>
+<version>1.1</version>
+<title>Debug</title>
+<template></template>
+<defaultTemplate></defaultTemplate>
+<validationScript></validationScript>
+<comment></comment>
+<minorEdit>false</minorEdit>
+<syntaxId>xwiki/2.0</syntaxId>
+<hidden>false</hidden>
+<content>{{html}}
+  &lt;form method="post" action="Ajax"&gt;
+  &lt;input type="text" name="macroId" value="606388356" /&gt;
+  &lt;input type="text" name="visibility" value="Global" /&gt;
+  &lt;input type="submit" /&gt;
+&lt;/form&gt;
+  {{/html}}</content></xwikidoc>

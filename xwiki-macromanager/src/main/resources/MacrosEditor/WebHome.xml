@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xwikidoc>
+<web>MacrosEditor</web>
+<name>WebHome</name>
+<language></language>
+<defaultLanguage>en</defaultLanguage>
+<translation>0</translation>
+<parent></parent>
+<creator>XWiki.Admin</creator>
+<author>XWiki.Admin</author>
+<customClass></customClass>
+<contentAuthor>XWiki.Admin</contentAuthor>
+<creationDate>1325498248000</creationDate>
+<date>1325498248000</date>
+<contentUpdateDate>1325498248000</contentUpdateDate>
+<version>1.1</version>
+<title>MacrosEditor</title>
+<template></template>
+<defaultTemplate></defaultTemplate>
+<validationScript></validationScript>
+<comment></comment>
+<minorEdit>false</minorEdit>
+<syntaxId>xwiki/2.1</syntaxId>
+<hidden>false</hidden>
+<object>
+<class>
+<name>XWiki.JavaScriptExtension</name>
+<customClass></customClass>
+<customMapping></customMapping>
+<defaultViewSheet></defaultViewSheet>
+<defaultEditSheet></defaultEditSheet>
+<defaultWeb></defaultWeb>
+<nameField></nameField>
+<validationScript></validationScript>
+<cache>
+<cache>0</cache>
+<disabled>0</disabled>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>cache</name>
+<number>5</number>
+<prettyName>Caching policy</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>long|short|default|forbid</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</cache>
+<code>
+<disabled>0</disabled>
+<name>code</name>
+<number>2</number>
+<prettyName>Code</prettyName>
+<rows>20</rows>
+<size>50</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+</code>
+<name>
+<disabled>0</disabled>
+<name>name</name>
+<number>1</number>
+<prettyName>Name</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</name>
+<parse>
+<disabled>0</disabled>
+<displayFormType>select</displayFormType>
+<displayType>yesno</displayType>
+<name>parse</name>
+<number>4</number>
+<prettyName>Parse content</prettyName>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+</parse>
+<use>
+<cache>0</cache>
+<disabled>0</disabled>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>use</name>
+<number>3</number>
+<prettyName>Use this extension</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>currentPage=Always on this page|onDemand=On demand|always=Always on this wiki</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</use>
+</class>
+<name>MacrosEditor.WebHome</name>
+<number>0</number>
+<className>XWiki.JavaScriptExtension</className>
+<guid>06c3c689-c651-49d0-9a66-5fd17c649154</guid>
+<property>
+<cache>default</cache>
+</property>
+<property>
+<code>function alertConsole(text){
+  var console = document.getElementById("keph_console");
+  console.innerHTML = console.innerHTML + "&lt;br /&gt;" + text;
+}
+
+function cleanConsole(){
+  var console = document.getElementById("keph_console");
+  console.innerHTML = '';
+}
+
+function updateVisibilityValue(field){
+  var macroPrefix = "MacrosEditor.macro_";
+  var macroId = field.id.substr(macroPrefix.length);
+  var notif = new XWiki.widgets.Notification("Saving...", "inprogress", {inactive: true} );
+  new Ajax.Request('Ajax?xpage=plain',
+                   {
+                     method: 'post',
+                     parameters: {macroId: macroId, visibility: field.value},
+                     onLoading: function(){
+                       notif.show();
+                     },
+                     onSuccess: function(transport){
+                       notif.replace(new XWiki.widgets.Notification("Saved", "done"));
+                     },
+                     onFailure: function(){
+                       notifSaving.hide();
+                       notif.replace(new XWiki.widgets.Notification("Error, the modification can not be saved!", "error"));
+                     }
+                   }
+                  );
+}
+
+function initHandlers(){
+  var elems = getElementsByClassName("select", "MacrosEditor.visibilitySelect");
+  for(var i=0; i&lt;elems.length; ++i){
+    var elem = elems[i];
+    if(elem.hasMacroTableListener)
+      return;
+    Event.observe(elem.id, 'change', function(event) {
+      updateVisibilityValue(this);
+    });
+    elem.hasMacroTableListener=true;
+  }
+}
+
+Event.observe('macrosTable', 'click', function(event) {
+  initHandlers();
+});
+
+Event.observe('macrosTable', 'change', function(event) {
+  initHandlers();
+});
+
+function getElementsByClassName( tag, name ) {
+  var arr = new Array();  
+  var elems = document.getElementsByTagName(tag);
+  for(var i=0; i&lt;elems.length; ++i){
+    var elem = elems[i];
+    if ( elem.className == name )
+      arr[arr.length] = elem;
+  }
+  return arr;
+}
+</code></property><property><name>MacrosEditorJS</name>
+</property>
+<property>
+<parse>0</parse>
+</property>
+<property>
+<use>currentPage</use>
+</property>
+</object>
+<content>= Macros List =
+{{velocity}}
+#set($columns = ["id", "name", "page", "description", "visibility", "link"])
+#set($columnsProperties = {
+    "id"   : { "type" : "text", "html" : "false", "sortable": "true"},
+    "name" : { "type" : "text", "sortable" : "true"},
+    "page" : { "type" : "text", "sortable" : "true"},
+    "description" : { "type" : "text", "sortable" : "true" },
+    "visibility" : { "type" : "list", "class": "XWiki.WikiMacroClass", "sortable" : "true" },
+    "link" : { "type" : "text", "filterable" : "false", "sortable" : "false" }
+})
+#set($options = {
+   "resultPage":"MacrosEditor.ResultsPage\.JSON",
+   "translationPrefix" : "macroseditor."
+})
+#livetable("macrosTable" $columns $columnsProperties $options)
+{{/velocity}}
+</content></xwikidoc>
