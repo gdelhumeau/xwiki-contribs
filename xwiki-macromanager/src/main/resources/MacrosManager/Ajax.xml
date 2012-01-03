@@ -10,9 +10,9 @@
 <author>XWiki.Admin</author>
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1325595944000</creationDate>
-<date>1325595944000</date>
-<contentUpdateDate>1325595944000</contentUpdateDate>
+<creationDate>1325597289000</creationDate>
+<date>1325597289000</date>
+<contentUpdateDate>1325597289000</contentUpdateDate>
 <version>1.1</version>
 <title>Ajax</title>
 <template></template>
@@ -23,6 +23,8 @@
 <syntaxId>xwiki/2.0</syntaxId>
 <hidden>false</hidden>
 <content>{{velocity}}
+#if($hasGlobalAdmin)
+
 ## === Get values ===
 #set( $macroId = "$!{request.get('macroId')}" )
 #set( $visibility = "$!{request.get('visibility')}" )
@@ -51,4 +53,6 @@
 Save OK
   #end
 #end
+
+#end ## Admin Right
 {{/velocity}}</content></xwikidoc>
