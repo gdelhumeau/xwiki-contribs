@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xwikidoc>
+<web>MacrosManager</web>
+<name>Ajax</name>
+<language></language>
+<defaultLanguage>en</defaultLanguage>
+<translation>0</translation>
+<parent>MacrosManager.WebHome</parent>
+<creator>XWiki.Admin</creator>
+<author>XWiki.Admin</author>
+<customClass></customClass>
+<contentAuthor>XWiki.Admin</contentAuthor>
+<creationDate>1325517816000</creationDate>
+<date>1325517816000</date>
+<contentUpdateDate>1325517816000</contentUpdateDate>
+<version>1.1</version>
+<title>Ajax</title>
+<template></template>
+<defaultTemplate></defaultTemplate>
+<validationScript></validationScript>
+<comment></comment>
+<minorEdit>false</minorEdit>
+<syntaxId>xwiki/2.0</syntaxId>
+<hidden>false</hidden>
+<content>{{velocity output="false"}}
+## === Get values ===
+#set( $macroId = "$!{request.get('macroId')}" )
+#set( $visibility = "$!{request.get('visibility')}" )
+
+## === Parse value ===
+#set( $macroId = $util.parseInt($macroId ) )
+#set( $isValidVisibility = false )
+#set( $macroClass = $xwiki.getClass('XWiki.WikiMacroClass') )
+#set( $visibilityProp = $macroClass.get('visibility') )
+#set( $listValues = $visibilityProp.getListValues() )
+#foreach($v in $listValues)
+  #if($v == $visibility)
+    #set($isValidVisibility = true)
+  #end
+#end
+
+
+MID: $macroId
+Visib: $visibility
+Valid: $isValidVisibility
+
+
+## === If values are great, modify the property ===
+#if( $macroId != 0  &amp;&amp; $isValidVisibility)
+  #set( $hql = "SELECT doc.fullName FROM Document doc, BaseObject macro WHERE macro.className='XWiki.WikiMacroClass' AND doc.fullName = macro.name AND macro.id = $macroId" )
+  #set( $results = $services.query.xwql($hql).execute() )
+  #foreach( $r in $results )
+    #set( $docClass = $xwiki.getDocument( $r ))
+    #set( $macro = $docClass.getObject("XWiki.WikiMacroClass") )
+    $macro.set('visibility', $visibility)
+    $docClass.save()
+Normalement c'est bon
+  #end
+#end
+{{/velocity}}</content></xwikidoc>

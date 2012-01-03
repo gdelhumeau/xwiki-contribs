@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xwikidoc>
+<web>MacrosManager</web>
+<name>WebHome</name>
+<language></language>
+<defaultLanguage>en</defaultLanguage>
+<translation>0</translation>
+<parent></parent>
+<creator>XWiki.Admin</creator>
+<author>XWiki.Admin</author>
+<customClass></customClass>
+<contentAuthor>XWiki.Admin</contentAuthor>
+<creationDate>1325526890000</creationDate>
+<date>1325526890000</date>
+<contentUpdateDate>1325526890000</contentUpdateDate>
+<version>1.1</version>
+<title>Macros Manager</title>
+<template></template>
+<defaultTemplate></defaultTemplate>
+<validationScript></validationScript>
+<comment></comment>
+<minorEdit>false</minorEdit>
+<syntaxId>xwiki/2.1</syntaxId>
+<hidden>false</hidden>
+<object>
+<class>
+<name>XWiki.ConfigurableClass</name>
+<customClass></customClass>
+<customMapping></customMapping>
+<defaultViewSheet></defaultViewSheet>
+<defaultEditSheet></defaultEditSheet>
+<defaultWeb></defaultWeb>
+<nameField></nameField>
+<validationScript></validationScript>
+<codeToExecute>
+<disabled>0</disabled>
+<editor>---</editor>
+<name>codeToExecute</name>
+<number>7</number>
+<picker>0</picker>
+<prettyName>codeToExecute</prettyName>
+<rows>5</rows>
+<size>40</size>
+<unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
+<classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+</codeToExecute>
+<configurationClass>
+<disabled>0</disabled>
+<name>configurationClass</name>
+<number>3</number>
+<picker>0</picker>
+<prettyName>configurationClass</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</configurationClass>
+<configureGlobally>
+<defaultValue></defaultValue>
+<disabled>0</disabled>
+<displayFormType>checkbox</displayFormType>
+<displayType></displayType>
+<name>configureGlobally</name>
+<number>4</number>
+<prettyName>configureGlobally</prettyName>
+<unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
+<classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+</configureGlobally>
+<displayInSection>
+<disabled>0</disabled>
+<name>displayInSection</name>
+<number>1</number>
+<picker>0</picker>
+<prettyName>displayInSection</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</displayInSection>
+<heading>
+<disabled>0</disabled>
+<name>heading</name>
+<number>2</number>
+<picker>0</picker>
+<prettyName>heading</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</heading>
+<iconAttachment>
+<disabled>0</disabled>
+<name>iconAttachment</name>
+<number>8</number>
+<picker>0</picker>
+<prettyName>iconAttachment</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</iconAttachment>
+<linkPrefix>
+<disabled>0</disabled>
+<name>linkPrefix</name>
+<number>5</number>
+<picker>0</picker>
+<prettyName>linkPrefix</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</linkPrefix>
+<propertiesToShow>
+<cache>0</cache>
+<disabled>0</disabled>
+<displayType>input</displayType>
+<multiSelect>1</multiSelect>
+<name>propertiesToShow</name>
+<number>6</number>
+<picker>0</picker>
+<prettyName>propertiesToShow</prettyName>
+<relationalStorage>1</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>20</size>
+<sort>none</sort>
+<unmodifiable>0</unmodifiable>
+<validationMessage></validationMessage>
+<validationRegExp></validationRegExp>
+<values></values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</propertiesToShow>
+</class>
+<name>MacrosManager.WebHome</name>
+<number>0</number>
+<className>XWiki.ConfigurableClass</className>
+<guid>83f60025-09ea-4c57-aff7-3ad4b3a1f14d</guid>
+<property>
+<codeToExecute>{{include document="MacrosManager.WebHome" /}}</codeToExecute>
+</property>
+<property>
+<configurationClass></configurationClass>
+</property>
+<property>
+<configureGlobally>1</configureGlobally>
+</property>
+<property>
+<displayInSection>Various</displayInSection>
+</property>
+<property>
+<heading>Macros Manager</heading>
+</property>
+<property>
+<iconAttachment></iconAttachment>
+</property>
+<property>
+<linkPrefix></linkPrefix>
+</property>
+<property>
+<propertiesToShow/>
+</property>
+</object>
+<object>
+<class>
+<name>XWiki.JavaScriptExtension</name>
+<customClass></customClass>
+<customMapping></customMapping>
+<defaultViewSheet></defaultViewSheet>
+<defaultEditSheet></defaultEditSheet>
+<defaultWeb></defaultWeb>
+<nameField></nameField>
+<validationScript></validationScript>
+<cache>
+<cache>0</cache>
+<disabled>0</disabled>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>cache</name>
+<number>5</number>
+<prettyName>Caching policy</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>long|short|default|forbid</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</cache>
+<code>
+<disabled>0</disabled>
+<name>code</name>
+<number>2</number>
+<prettyName>Code</prettyName>
+<rows>20</rows>
+<size>50</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.TextAreaClass</classType>
+</code>
+<name>
+<disabled>0</disabled>
+<name>name</name>
+<number>1</number>
+<prettyName>Name</prettyName>
+<size>30</size>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.StringClass</classType>
+</name>
+<parse>
+<disabled>0</disabled>
+<displayFormType>select</displayFormType>
+<displayType>yesno</displayType>
+<name>parse</name>
+<number>4</number>
+<prettyName>Parse content</prettyName>
+<unmodifiable>0</unmodifiable>
+<classType>com.xpn.xwiki.objects.classes.BooleanClass</classType>
+</parse>
+<use>
+<cache>0</cache>
+<disabled>0</disabled>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>use</name>
+<number>3</number>
+<prettyName>Use this extension</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>currentPage=Always on this page|onDemand=On demand|always=Always on this wiki</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</use>
+</class>
+<name>MacrosManager.WebHome</name>
+<number>0</number>
+<className>XWiki.JavaScriptExtension</className>
+<guid>cce63611-8eb4-44c0-83f1-3d365e86f5bf</guid>
+<property>
+<cache>default</cache>
+</property>
+<property>
+<code>function alertConsole(text){
+  var console = document.getElementById("keph_console");
+  console.innerHTML = console.innerHTML + "&lt;br /&gt;" + text;
+}
+
+function cleanConsole(){
+  var console = document.getElementById("keph_console");
+  console.innerHTML = '';
+}
+
+function updateVisibilityValue(field){
+  var macroPrefix = "MacrosEditor.macro_";
+  var macroId = field.id.substr(macroPrefix.length);
+  var notif = new XWiki.widgets.Notification("Saving...", "inprogress", {inactive: true} );
+  new Ajax.Request('../MacrosManager/Ajax?xpage=plain',
+                   {
+                     method: 'post',
+                     parameters: {macroId: macroId, visibility: field.value},
+                     onLoading: function(){
+                       notif.show();
+                     },
+                     onSuccess: function(transport){
+                       notif.replace(new XWiki.widgets.Notification("Saved", "done"));
+                     },
+                     onFailure: function(){
+                       notifSaving.hide();
+                       notif.replace(new XWiki.widgets.Notification("Error, the modification can not be saved!", "error"));
+                     }
+                   }
+                  );
+}
+
+function initHandlers(){
+  var elems = getElementsByClassName("select", "MacrosEditor.visibilitySelect");
+  for(var i=0; i&lt;elems.length; ++i){
+    var elem = elems[i];
+    if(elem.hasMacroTableListener)
+      return;
+    Event.observe(elem.id, 'change', function(event) {
+      updateVisibilityValue(this);
+    });
+    elem.hasMacroTableListener=true;
+  }
+}
+
+Event.observe('macrosTable', 'click', function(event) {
+  initHandlers();
+});
+
+Event.observe('macrosTable', 'change', function(event) {
+  initHandlers();
+});
+
+function getElementsByClassName( tag, name ) {
+  var arr = new Array();  
+  var elems = document.getElementsByTagName(tag);
+  for(var i=0; i&lt;elems.length; ++i){
+    var elem = elems[i];
+    if ( elem.className == name )
+      arr[arr.length] = elem;
+  }
+  return arr;
+}
+
+my_keph_callback = function (row, i, table) {
+
+## === Get the visibility values ===
+#set( $macroClass = $xwiki.getClass('XWiki.WikiMacroClass') )
+#set( $visibilityProp = $macroClass.get('visibility') )
+#set( $listValues = $visibilityProp.getListValues() )
+  var visibList = [#foreach($v in $listValues)#if($velocityCount&gt;1),#end'$v'#end];
+  
+  var visibElem = new Element('select');
+  for(var i=0; i&lt;visibList.length; ++i){
+    if(visibList[i]==row.visibility)
+      visibElem.appendChild(new Element('option', {'selected':'selected'}).update(visibList[i]));
+    else
+      visibElem.appendChild(new Element('option').update(visibList[i]));
+  }
+  
+  var tr = new Element('tr');  
+  tr.appendChild(new Element('td').update(row.id));
+  tr.appendChild(new Element('td').update(row.name));
+  tr.appendChild(new Element('td').update(row.page));
+  tr.appendChild(new Element('td').update(row.description));
+  tr.appendChild(new Element('td').update(visibElem));
+  tr.appendChild(new Element('td').update(new Element('a', { 'href':row.link, 'class':'action actionedit' }).update('Edit')));
+  return tr;
+}
+</code></property><property><name>MacrosEditorJS</name>
+</property>
+<property>
+<parse>1</parse>
+</property>
+<property>
+<use>currentPage</use>
+</property>
+</object>
+<content>{{velocity}}
+$xwiki.jsx.use("MacrosManager.WebHome")
+#set($columns = ["id", "name", "page", "description", "visibility", "link"])
+#set($columnsProperties = {
+    "id"   : { "type" : "text", "html" : "false", "sortable": "true"},
+    "name" : { "type" : "text", "sortable" : "true"},
+    "page" : { "type" : "text", "sortable" : "true"},
+    "description" : { "type" : "text", "sortable" : "true" },
+    "visibility" : { "type" : "list", "class": "XWiki.WikiMacroClass", "sortable" : "true" },
+    "link" : { "type" : "text", "filterable" : "false", "sortable" : "false" }
+})
+#set($options = {
+   "resultPage":"MacrosManager.ResultsPageJSON",
+   "translationPrefix" : "macrosmanager.",
+   "callback" : "my_keph_callback"
+})
+#livetable("macrosTable" $columns $columnsProperties $options)
+{{/velocity}}
+</content></xwikidoc>
