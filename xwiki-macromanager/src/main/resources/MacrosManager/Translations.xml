@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xwikidoc>
+<web>MacrosManager</web>
+<name>Translations</name>
+<language></language>
+<defaultLanguage>en</defaultLanguage>
+<translation>0</translation>
+<parent>MacrosManager.WebHome</parent>
+<creator>XWiki.Admin</creator>
+<author>XWiki.Admin</author>
+<customClass></customClass>
+<contentAuthor>XWiki.Admin</contentAuthor>
+<creationDate>1325584271000</creationDate>
+<date>1325584271000</date>
+<contentUpdateDate>1325584271000</contentUpdateDate>
+<version>1.1</version>
+<title>Translations</title>
+<template></template>
+<defaultTemplate></defaultTemplate>
+<validationScript></validationScript>
+<comment></comment>
+<minorEdit>false</minorEdit>
+<syntaxId>xwiki/2.0</syntaxId>
+<hidden>false</hidden>
+<content>admin.macrosmanager = Macros Manager
+macrosmanager.id = Macro ID
+macrosmanager.name = Name
+macrosmanager.description = Description
+macrosmanager.visibility = Visibility
+macrosmanager.link = Edit link</content></xwikidoc>

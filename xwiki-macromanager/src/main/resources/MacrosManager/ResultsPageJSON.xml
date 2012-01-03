@@ -10,9 +10,9 @@
 <author>XWiki.Admin</author>
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1325526874000</creationDate>
-<date>1325526874000</date>
-<contentUpdateDate>1325526874000</contentUpdateDate>
+<creationDate>1325585079000</creationDate>
+<date>1325585079000</date>
+<contentUpdateDate>1325585079000</contentUpdateDate>
 <version>1.1</version>
 <title>ResultsPage</title>
 <template></template>
@@ -24,7 +24,7 @@
 <hidden>false</hidden>
 <content>{{velocity output="false"}}
 #**
-* This is the JSON results page for MacrosEditors livetable
+* This is the JSON results page for MacrosManager livetable
 *
 * @author Guillaume Delhumeau (guillaume.delhumeau@xwiki.com)
 *#
@@ -73,8 +73,6 @@ $response.setContentType('application/json')
     #set($orderby = "description.value")
   #elseif($order == 'visibility')
     #set($orderby = "visibility.value")
-  #elseif($order == 'page')
-    #set($orderby = "doc.fullName")
   #end
 
 ## === Sort direction ===
@@ -100,13 +98,6 @@ $response.setContentType('application/json')
 #if($filterMacroName != '')
 #set($filterMacroName = $filterMacroName.toLowerCase())
 #set($filterHQL = $filterHQL + " AND LOWER(macroname.value) LIKE '%$filterMacroName%'" )
-#end
-
-## === Search by doc.fullName
-#set( $filterDocName = "$!{request.get('page')}" )
-#if($filterDocName != '')
-#set($filterDocName = $filterDocName.toLowerCase())
-#set($filterHQL = $filterHQL + " AND LOWER(doc.fullName) LIKE '%$filterDocName%'" )
 #end
 
 ## === Search by macro.description
@@ -151,15 +142,14 @@ $response.setContentType('application/json')
   #set( $description = $row[3] )
   #set( $visibility  = $row[4] )
   #set( $docFullName = $row[5] )
-  #set( $macroClassId = "MacrosEditor.macro_" + $baseMacroId )
   #if($velocityCount &gt; 1)
   ,
   #end
   {
   "doc_viewable" : "true",
   "id": "$macroId",
+  "dbid": "$baseMacroId",
   "name": "$macroName",
-  "page": "$docFullName",
   "description": "$description.replaceAll("\n", " ")",
   "visibility": "$visibility",
   "link": "$xwiki.getURL($docFullName, "edit", "editor=object&amp;classname=XWiki.WikiMacroClass&amp;object=0")"
