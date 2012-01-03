@@ -10,9 +10,9 @@
 <author>XWiki.Admin</author>
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1325584271000</creationDate>
-<date>1325584271000</date>
-<contentUpdateDate>1325584271000</contentUpdateDate>
+<creationDate>1325590016000</creationDate>
+<date>1325590016000</date>
+<contentUpdateDate>1325590016000</contentUpdateDate>
 <version>1.1</version>
 <title>Translations</title>
 <template></template>
@@ -27,4 +27,5 @@ macrosmanager.id = Macro ID
 macrosmanager.name = Name
 macrosmanager.description = Description
 macrosmanager.visibility = Visibility
-macrosmanager.link = Edit link</content></xwikidoc>
+macrosmanager.link = Edit link
+macrosmanager.norights = You don't have the administration rights. It is needed by this application.</content></xwikidoc>

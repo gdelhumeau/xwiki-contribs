@@ -10,9 +10,9 @@
 <author>XWiki.Admin</author>
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1325585079000</creationDate>
-<date>1325585079000</date>
-<contentUpdateDate>1325585079000</contentUpdateDate>
+<creationDate>1325589872000</creationDate>
+<date>1325589872000</date>
+<contentUpdateDate>1325589872000</contentUpdateDate>
 <version>1.1</version>
 <title>ResultsPage</title>
 <template></template>
@@ -33,6 +33,9 @@
 #if("$!{request.xpage}" == 'plain')
 $response.setContentType('application/json')
 #end
+
+## == Check if we are admins ==
+#if($hasGlobalAdmin)
 
 ## === Offset = item # at which to start displaying data ===
 #set($offset = 0)
@@ -122,8 +125,12 @@ $response.setContentType('application/json')
 #set( $queryCount = "SELECT DISTINCT COUNT(macroid.value) FROM Document doc, BaseObject macro, StringProperty macroname, StringProperty visibility, LargeStringProperty description, StringProperty macroid WHERE macro.className='XWiki.WikiMacroClass' AND doc.fullName = macro.name AND visibility.id = macro.id AND description.id = macro.id AND macroid.id = macro.id AND macroname.id = macro.id AND visibility.name='visibility' AND description.name='description' AND macroid.name='id' AND macroname.name='name' $filterHQL" )
 #set( $countResult = $services.query.xwql($queryCount).execute() )
 #set( $countResult = $countResult[0] - 1 ) ## I don't know why -1
+
+#end
 {{/velocity}}
 {{velocity}} ## Output ON
+## == Check if we are admins ==
+#if($hasGlobalAdmin)
 ## === JSON ===
 {
 "totalrows": $countResult,
@@ -158,4 +165,6 @@ $response.setContentType('application/json')
 
 ]
 }
+
+#end
 {{/velocity}}</content></xwikidoc>
