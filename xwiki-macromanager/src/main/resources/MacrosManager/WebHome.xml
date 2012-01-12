@@ -10,9 +10,9 @@
 <author>XWiki.Admin</author>
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1325596442000</creationDate>
-<date>1325596442000</date>
-<contentUpdateDate>1325596442000</contentUpdateDate>
+<creationDate>1326365016000</creationDate>
+<date>1326365016000</date>
+<contentUpdateDate>1326365016000</contentUpdateDate>
 <version>1.1</version>
 <title>Macros Manager</title>
 <template></template>
@@ -259,7 +259,7 @@ function updateVisibilityValue(field){
   new Ajax.Request('$xwiki.getURL("MacrosManager.Ajax", "get", "outputSyntax=plain")',
                    {
                      method: 'post',
-                     parameters: {macroId: macroId, visibility: field.value},
+                     parameters: {docFullName: macroId, visibility: field.value},
                      onLoading: function(){
                        notif.show();
                      },
@@ -421,7 +421,7 @@ macrosmanager_livetable_callback = function (row, i, table) {
   var visibList = [#foreach($v in $listValues)#if($velocityCount&gt;1),#end'$v'#end];
   
   // Generate the visibility combo box
-  var visibElem = new Element('select', {'id':'macrosmanager_visib_'+row.dbid, 'class':'macrosmanager_select'});
+  var visibElem = new Element('select', {'id':'macrosmanager_visib_'+row.doc_fullname, 'class':'macrosmanager_select'});
   for(var i=0; i&lt;visibList.length; ++i){
     if(visibList[i]==row.visibility)
       visibElem.appendChild(new Element('option', {'selected':'selected'}).update(visibList[i]));
@@ -435,7 +435,7 @@ macrosmanager_livetable_callback = function (row, i, table) {
   tr.appendChild(new Element('td').update(row.name));
   tr.appendChild(new Element('td').update(row.description));
   tr.appendChild(new Element('td').update(visibElem));
-  tr.appendChild(new Element('td').update(new Element('a', { 'href':row.link, 'class':'action actionedit' }).update('Edit')));
+  tr.appendChild(new Element('td').update(new Element('a', { 'href':row.doc_edit_url+'?editor=object&amp;classname=XWiki.WikiMacroClass&amp;object=0', 'class':'action actionedit' }).update('Edit')));
   return tr;
 
 }
@@ -449,7 +449,6 @@ macrosmanager_livetable_callback = function (row, i, table) {
 </property>
 </object>
 <content>{{velocity}}
-#if($hasGlobalAdmin)
 $xwiki.jsx.use("MacrosManager.WebHome")
 #set($columns = ["id", "name", "description", "visibility", "link"])
 #set($columnsProperties = {
@@ -460,14 +459,10 @@ $xwiki.jsx.use("MacrosManager.WebHome")
     "link" : { "type" : "text", "filterable" : "false", "sortable" : "false" }
 })
 #set($options = {
-   "resultPage":"MacrosManager.ResultsPageJSON",
+   "className":"XWiki.WikiMacroClass",
    "translationPrefix" : "macrosmanager.",
    "callback" : "macrosmanager_livetable_callback"
 })
 #livetable("macrosTable" $columns $columnsProperties $options)
-
-#else
-You don't have global administration right. You need it to use this application.
-#end
 {{/velocity}}
 </content></xwikidoc>

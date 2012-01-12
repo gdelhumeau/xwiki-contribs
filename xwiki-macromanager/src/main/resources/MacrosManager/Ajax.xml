@@ -10,9 +10,9 @@
 <author>XWiki.Admin</author>
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1325597289000</creationDate>
-<date>1325597289000</date>
-<contentUpdateDate>1325597289000</contentUpdateDate>
+<creationDate>1326365377000</creationDate>
+<date>1326365377000</date>
+<contentUpdateDate>1326365377000</contentUpdateDate>
 <version>1.1</version>
 <title>Ajax</title>
 <template></template>
@@ -23,14 +23,11 @@
 <syntaxId>xwiki/2.0</syntaxId>
 <hidden>false</hidden>
 <content>{{velocity}}
-#if($hasGlobalAdmin)
-
 ## === Get values ===
-#set( $macroId = "$!{request.get('macroId')}" )
+#set( $docFullName = "$!{request.get('docFullName')}" )
 #set( $visibility = "$!{request.get('visibility')}" )
 
 ## === Parse value ===
-#set( $macroId = $util.parseInt($macroId ) )
 #set( $isValidVisibility = false )
 #set( $macroClass = $xwiki.getClass('XWiki.WikiMacroClass') )
 #set( $visibilityProp = $macroClass.get('visibility') )
@@ -42,17 +39,11 @@
 #end
 
 ## === If values are great, modify the property ===
-#if( $macroId != 0  &amp;&amp; $isValidVisibility)
-  #set( $hql = "SELECT doc.fullName FROM Document doc, BaseObject macro WHERE macro.className='XWiki.WikiMacroClass' AND doc.fullName = macro.name AND macro.id = $macroId" )
-  #set( $results = $services.query.xwql($hql).execute() )
-  #foreach( $r in $results )
-    #set( $docClass = $xwiki.getDocument( $r ))
-    #set( $macro = $docClass.getObject("XWiki.WikiMacroClass") )
-    $macro.set('visibility', $visibility)
-    $docClass.save()
+#if( $docFullName != ""  &amp;&amp; $isValidVisibility)
+  #set( $document = $xwiki.getDocument($docFullName) )
+  #set( $macro = $document.getObject("XWiki.WikiMacroClass") )
+  $macro.set('visibility', $visibility)
+  $document.save()
 Save OK
-  #end
 #end
-
-#end ## Admin Right
 {{/velocity}}</content></xwikidoc>
