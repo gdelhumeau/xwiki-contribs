@@ -10,9 +10,9 @@
 <author>XWiki.Admin</author>
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1332765351000</creationDate>
-<date>1332765351000</date>
-<contentUpdateDate>1332765351000</contentUpdateDate>
+<creationDate>1332768275000</creationDate>
+<date>1332768275000</date>
+<contentUpdateDate>1332768275000</contentUpdateDate>
 <version>1.1</version>
 <title>AddExcelExportToLivetableMacroResultsPage</title>
 <template></template>
@@ -199,6 +199,7 @@
  *#
 #macro(gridresultexcel $className $collist $filterfrom $filterwhere)
  #set($calc = $xwiki.calc)
+ #set($class = $xwiki.getClass($className)) 
  #if($calc)
    #set($wb = $calc.getWritableWorkbook())
    #set($sheet = $wb.createSheet("XWiki", 0))
@@ -210,8 +211,9 @@
       #set($ok = $sheet.setColumnView($colCount, 20))
       #set($colCount = $colCount + 1)
      #elseif($colname == '_action') ,
-     #else
-      #set($ok = $calc.setLabelCell($sheet, 0, $colCount, $colname))    
+     #else     
+      #set($colPrettyName = $class.get($colname).getPrettyName())      
+      #set($ok = $calc.setLabelCell($sheet, 0, $colCount, $colPrettyName))    
       #set($ok = $sheet.setColumnView($colCount, 20))
       #set($colCount = $colCount + 1)
      #end 
