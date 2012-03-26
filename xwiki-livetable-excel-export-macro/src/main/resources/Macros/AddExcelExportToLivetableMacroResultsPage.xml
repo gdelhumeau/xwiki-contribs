@@ -10,9 +10,9 @@
 <author>XWiki.Admin</author>
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1328718340000</creationDate>
-<date>1328718340000</date>
-<contentUpdateDate>1328718340000</contentUpdateDate>
+<creationDate>1332765351000</creationDate>
+<date>1332765351000</date>
+<contentUpdateDate>1332765351000</contentUpdateDate>
 <version>1.1</version>
 <title>AddExcelExportToLivetableMacroResultsPage</title>
 <template></template>
@@ -245,6 +245,9 @@ $item $rowCount
          #if($colname=='doc.title')
            #set($ok = $calc.setLabelCell($sheet, $rowCount, $colCount, $itemDoc.title))               
            #set($colCount = $colCount + 1)
+         #elseif($colname=='doc.name')
+           #set($ok = $calc.setLabelCell($sheet, $rowCount, $colCount, $itemDoc.getName()))                        
+           #set($colCount = $colCount + 1)
          #elseif($colname=='doc.date')
            #set($ok = $calc.setDateTimeCell($sheet, $rowCount, $colCount, $itemDoc.getDate()))                        
            #set($colCount = $colCount + 1)
@@ -288,6 +291,8 @@ $item $rowCount
            #set($fieldDisplayValue = "$!itemDoc.display($colname, 'view')")
            #if($fieldDisplayValue == '')
              #set($fieldDisplayValue = $msg.get("${request.transprefix}emptyvalue"))
+           #else
+             #set($fieldDisplayValue = $fieldDisplayValue.replaceAll('\{\{html clean="false" wiki="false"\}\}&lt;p&gt;', '').replaceAll('&lt;/p&gt;\{\{/html\}\}', '').replaceAll('&lt;p&gt;', '').replaceAll('&lt;/p&gt;', '')) 
            #end
            #set($ok = $calc.setLabelCell($sheet, $rowCount, $colCount, $fieldDisplayValue))    
            #set($colCount = $colCount + 1)

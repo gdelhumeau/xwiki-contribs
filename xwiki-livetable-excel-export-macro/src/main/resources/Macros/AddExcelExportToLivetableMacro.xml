@@ -10,9 +10,9 @@
 <author>XWiki.Admin</author>
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1328718339000</creationDate>
-<date>1328718339000</date>
-<contentUpdateDate>1328718339000</contentUpdateDate>
+<creationDate>1331573626000</creationDate>
+<date>1331573626000</date>
+<contentUpdateDate>1331573626000</contentUpdateDate>
 <version>1.1</version>
 <title>Add Excel Export to Livetable (Macro)</title>
 <template></template>
@@ -645,8 +645,9 @@ Just write:
 Where "{{code}}my-livetable{{/code}}" is your livetable's name.
 
 = Options =
-* {{code}}withPageName{{/code}} : adds a 'wiki page name' to the excel sheet. (Default value = {{code}}'true'{{/code}})
-* {{code}}withPageURL{{/code}} : adds a 'wiki page URL' to the excel sheet. (Default value = {{code}}'true'{{/code}})
+
+* {{code}}withPageName{{/code}} : add a 'wiki page name' to the excel sheet. (Default value = {{code}}'true'{{/code}})
+* {{code}}withPageURL{{/code}} : add a 'wiki page URL' to the excel sheet. (Default value = {{code}}'true'{{/code}})
 
 = Installation =
 
