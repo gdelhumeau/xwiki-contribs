@@ -10,9 +10,9 @@
 <author>XWiki.Admin</author>
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1332768275000</creationDate>
-<date>1332768275000</date>
-<contentUpdateDate>1332768275000</contentUpdateDate>
+<creationDate>1332950589000</creationDate>
+<date>1332950589000</date>
+<contentUpdateDate>1332950589000</contentUpdateDate>
 <version>1.1</version>
 <title>AddExcelExportToLivetableMacroResultsPage</title>
 <template></template>
@@ -241,6 +241,7 @@ $item $rowCount
        #set($itemDoc = $xwiki.getDocument($item))
        #set($fullname = "${itemDoc.wiki}:${itemDoc.space}.${itemDoc.name}")
        #set($discard = $itemDoc.use($className))
+       #set($obj = $itemDoc.getObject($className))
        #set($itemUrl = $itemDoc.getExternalURL("view"))  
        #set($colCount = 0)
        #foreach($colname in $collist)
@@ -290,11 +291,9 @@ $item $rowCount
            #if($listtool.contains($propClass.getPropertyNames(), $colname))
              #set($propType = "$!{propClass.get($colname).type}")
            #end
-           #set($fieldDisplayValue = "$!itemDoc.display($colname, 'view')")
+           #set($fieldDisplayValue = "$!itemDoc.getValue($colname, $obj)")
            #if($fieldDisplayValue == '')
              #set($fieldDisplayValue = $msg.get("${request.transprefix}emptyvalue"))
-           #else
-             #set($fieldDisplayValue = $fieldDisplayValue.replaceAll('\{\{html clean="false" wiki="false"\}\}&lt;p&gt;', '').replaceAll('&lt;/p&gt;\{\{/html\}\}', '').replaceAll('&lt;p&gt;', '').replaceAll('&lt;/p&gt;', '')) 
            #end
            #set($ok = $calc.setLabelCell($sheet, $rowCount, $colCount, $fieldDisplayValue))    
            #set($colCount = $colCount + 1)
@@ -322,6 +321,12 @@ $item $rowCount
        #set($ok = $response.setHeader("Content-Disposition", 'inline; filename="livetable.xls"'))
        #set($ok = $xcontext.setFinished(true))
        #set($ok = $response.getOutputStream().write($bytes))
+       #set($ok = $response.setHeader("Cache-Control","max-age=120, public"))
+       #set($ok = $response.setHeader("Pragma","-"))
+       #set($expires = $util.getDate().getTime())
+       #set($expires = $expires+120000)
+       #set($expires =$util.getDate($expires))
+       #set($ok = $response.setDateHeader("Expires",$expires.getTime()))
      #else
       ## TODO need nice translated error message
       Failed to generate Excel file:
