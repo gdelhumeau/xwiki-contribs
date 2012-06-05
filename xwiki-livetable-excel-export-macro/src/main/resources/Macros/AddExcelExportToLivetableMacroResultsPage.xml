@@ -10,9 +10,9 @@
 <author>XWiki.Admin</author>
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1332950589000</creationDate>
-<date>1332950589000</date>
-<contentUpdateDate>1332950589000</contentUpdateDate>
+<creationDate>1338907184000</creationDate>
+<date>1338907184000</date>
+<contentUpdateDate>1338907184000</contentUpdateDate>
 <version>1.1</version>
 <title>AddExcelExportToLivetableMacroResultsPage</title>
 <template></template>
@@ -252,10 +252,10 @@ $item $rowCount
            #set($ok = $calc.setLabelCell($sheet, $rowCount, $colCount, $itemDoc.getName()))                        
            #set($colCount = $colCount + 1)
          #elseif($colname=='doc.date')
-           #set($ok = $calc.setDateTimeCell($sheet, $rowCount, $colCount, $itemDoc.getDate()))                        
+           #set($ok = $calc.setLabelCell($sheet, $rowCount, $colCount, $xwiki.formatDate($itemDoc.getDate())))
            #set($colCount = $colCount + 1)
          #elseif($colname=='doc.creationDate')
-           #set($ok = $calc.setDateTimeCell($sheet, $rowCount, $colCount, $itemDoc.getCreationDate()))                        
+           #set($ok = $calc.setLabelCell($sheet, $rowCount, $colCount, $xwiki.formatDate($itemDoc.getCreationDate())))                        
            #set($colCount = $colCount + 1)
          #elseif($colname=='doc.author')
            #set($ok = $calc.setLabelCell($sheet, $rowCount, $colCount, $itemDoc.author))                        
