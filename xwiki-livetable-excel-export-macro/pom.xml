@@ -28,8 +28,8 @@
   </parent>
   <groupId>org.xwiki.contrib</groupId>
   <artifactId>xwiki-application-my-contribs</artifactId>
-  <version>VERSION</version>
+  <version>1.5</version>
   <packaging>xar</packaging>
-  <name>XWiki Application - My Contribs</name>
+  <name>Livetable Excel Export Macro</name>
   <description></description>
 </project>
