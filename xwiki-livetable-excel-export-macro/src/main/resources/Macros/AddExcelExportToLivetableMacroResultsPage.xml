@@ -10,9 +10,9 @@
 <author>XWiki.Admin</author>
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1338907184000</creationDate>
-<date>1338907184000</date>
-<contentUpdateDate>1338907184000</contentUpdateDate>
+<creationDate>1341219956000</creationDate>
+<date>1341219956000</date>
+<contentUpdateDate>1341219956000</contentUpdateDate>
 <version>1.1</version>
 <title>AddExcelExportToLivetableMacroResultsPage</title>
 <template></template>
@@ -294,7 +294,11 @@ $item $rowCount
            #set($fieldDisplayValue = "$!itemDoc.getValue($colname, $obj)")
            #if($fieldDisplayValue == '')
              #set($fieldDisplayValue = $msg.get("${request.transprefix}emptyvalue"))
-           #end
+           #else
+            #set($fieldDisplayValue = "$!itemDoc.getRenderedContent($fieldDisplayValue, $!itemDoc.syntax.toIdString())")
+            #set($xmlCleaner = $xwiki.parseGroovyFromPage('Macros.AddExcelExportToLivetableMacroGroovy'))
+            #set($fieldDisplayValue = $xmlCleaner.getCleanText($fieldDisplayValue))            
+           #end           
            #set($ok = $calc.setLabelCell($sheet, $rowCount, $colCount, $fieldDisplayValue))    
            #set($colCount = $colCount + 1)
            ## reset to the default class
