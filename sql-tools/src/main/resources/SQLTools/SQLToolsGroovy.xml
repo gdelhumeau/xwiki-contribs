@@ -10,9 +10,9 @@
 <author>XWiki.Admin</author>
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1352114157000</creationDate>
-<date>1352114157000</date>
-<contentUpdateDate>1352114157000</contentUpdateDate>
+<creationDate>1352114288000</creationDate>
+<date>1352114288000</date>
+<contentUpdateDate>1352114288000</contentUpdateDate>
 <version>1.1</version>
 <title>SQLToolsGroovy</title>
 <template></template>
@@ -147,7 +147,7 @@ class SQLTools{
       // Get the datas
       def query = request.query;
       if (query==null)
-        query = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA &lt;&gt; 'INFORMATION_SCHEMA'";
+        query = "SHOW TABLES";
       def squery = escapeTool.xml(query);
       
       // Print the form
