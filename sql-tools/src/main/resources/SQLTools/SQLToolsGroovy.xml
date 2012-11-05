@@ -10,9 +10,9 @@
 <author>XWiki.Admin</author>
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1352111983000</creationDate>
-<date>1352111983000</date>
-<contentUpdateDate>1352111983000</contentUpdateDate>
+<creationDate>1352113877000</creationDate>
+<date>1352113877000</date>
+<contentUpdateDate>1352113877000</contentUpdateDate>
 <version>1.1</version>
 <title>SQLToolsGroovy</title>
 <template></template>
@@ -257,7 +257,7 @@ class SQLTools{
    * Get Tables
    */
   String getTables(connection){    
-    def sql = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA &lt;&gt; 'INFORMATION_SCHEMA'";
+    def sql = "SHOW TABLE";
     def stmt1 = connection.createStatement();
     def toReturn = "";
     try {
