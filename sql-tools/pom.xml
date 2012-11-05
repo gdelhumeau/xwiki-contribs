@@ -27,9 +27,9 @@
     <version>35</version>
   </parent>
   <groupId>org.xwiki.contrib</groupId>
-  <artifactId>xwiki-application-my-contribs</artifactId>
-  <version>VERSION</version>
+  <artifactId>xwiki-sql-tools</artifactId>
+  <version>1.0</version>
   <packaging>xar</packaging>
-  <name>XWiki Application - my-contribs</name>
+  <name>SQL Tools for XWiki</name>
   <description></description>
 </project>
