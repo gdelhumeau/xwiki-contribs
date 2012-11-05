@@ -10,9 +10,9 @@
 <author>XWiki.Admin</author>
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1352109523000</creationDate>
-<date>1352109523000</date>
-<contentUpdateDate>1352109523000</contentUpdateDate>
+<creationDate>1352111983000</creationDate>
+<date>1352111983000</date>
+<contentUpdateDate>1352111983000</contentUpdateDate>
 <version>1.1</version>
 <title>SQLToolsGroovy</title>
 <template></template>
@@ -147,7 +147,7 @@ class SQLTools{
       // Get the datas
       def query = request.query;
       if (query==null)
-        query = "SHOW TABLES";
+        query = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA &lt;&gt; 'INFORMATION_SCHEMA'";
       def squery = escapeTool.xml(query);
       
       // Print the form
@@ -189,6 +189,15 @@ class SQLTools{
     Class.forName (request.driver).newInstance ();
     def conn = DriverManager.getConnection (url, userName, password);
     return conn;
+  }
+  
+  /**
+   * Get XWiki Database System
+   */
+  String getXWikiDatabaseSystem(xwiki, xcontext){
+    def store = xwiki.getXWiki().getHibernateStore();
+    def db = store.getDatabaseProductName(xcontext.getContext());
+    return db;
   }
   
   /**
@@ -248,7 +257,7 @@ class SQLTools{
    * Get Tables
    */
   String getTables(connection){    
-    def sql = "SHOW TABLES";
+    def sql = "SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA &lt;&gt; 'INFORMATION_SCHEMA'";
     def stmt1 = connection.createStatement();
     def toReturn = "";
     try {
