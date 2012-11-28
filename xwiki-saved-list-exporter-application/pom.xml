@@ -27,9 +27,9 @@
     <version>35</version>
   </parent>
   <groupId>org.xwiki.contrib</groupId>
-  <artifactId>xwiki-application-my-contribs</artifactId>
-  <version>VERSION</version>
+  <artifactId>xwiki-saved-list-exporer-application</artifactId>
+  <version>1.1</version>
   <packaging>xar</packaging>
-  <name>XWiki Application - My Contribs</name>
-  <description></description>
+  <name>Saved List Exporter Application</name>
+  <description>This application allows to export multiple pages into a single XAR archive file, and to save the list of the pages that you want to export.</description>
 </project>
