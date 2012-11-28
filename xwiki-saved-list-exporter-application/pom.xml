@@ -27,7 +27,7 @@
     <version>35</version>
   </parent>
   <groupId>org.xwiki.contrib</groupId>
-  <artifactId>xwiki-saved-list-exporer-application</artifactId>
+  <artifactId>xwiki-saved-list-exporter-application</artifactId>
   <version>1.1</version>
   <packaging>xar</packaging>
   <name>Saved List Exporter Application</name>
