@@ -10,9 +10,9 @@
 <author>XWiki.Admin</author>
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1337705208000</creationDate>
-<date>1337705208000</date>
-<contentUpdateDate>1337705208000</contentUpdateDate>
+<creationDate>1354112744000</creationDate>
+<date>1354112744000</date>
+<contentUpdateDate>1354112744000</contentUpdateDate>
 <version>1.1</version>
 <title>Saved List Exporter Application</title>
 <template></template>
@@ -928,18 +928,18 @@ ATCtrRXQmrkuAAAAAElFTkSuQmCC
 </property>
 <property>
 <code>.sl_export_app_actionedit:before {
-  content: url('/xwiki/resources/icons/silk/page_white_edit.gif');
+  content: url('$xwiki.getSkinFile('icons/silk/page_white_edit.gif')');
   padding-right: 4px;
 }
 
 .sl_export_app_actionremove:before {
-  content: url('/xwiki/resources/icons/silk/cross.gif');
+  content: url('$xwiki.getSkinFile('icons/silk/cross.gif')');
   padding-right: 4px;
 }
 </code></property><property><name>Style</name>
 </property>
 <property>
-<parse>0</parse>
+<parse>1</parse>
 </property>
 <property>
 <use>onDemand</use>
@@ -1090,8 +1090,7 @@ ATCtrRXQmrkuAAAAAElFTkSuQmCC
     #if("$!request.ajax"=="1")
       OK
     #else
-      $msg.get('sl_export_app.messages.added')
-      #view()
+      $response.sendRedirect($doc.getURL('view'))
     #end
   #end
 #end
@@ -1107,8 +1106,7 @@ ATCtrRXQmrkuAAAAAElFTkSuQmCC
     #if("$!request.ajax"=="1")
       OK
     #else
-      $msg.get('sl_export_app.messages.deleted')
-      #view()
+      $response.sendRedirect($doc.getURL('view'))
     #end
   #else
     $msg.get('sl_export_app.messages.confirmremove') **$obj.get('document')** ?
@@ -1151,8 +1149,7 @@ ATCtrRXQmrkuAAAAAElFTkSuQmCC
     #if("$!request.ajax"=="1")
       OK
     #else
-      $msg.get('sl_export_app.messages.renamed')
-      #view()
+      $response.sendRedirect($doc.getURL('view'))
     #end
   #end
 #end
@@ -1161,8 +1158,10 @@ ATCtrRXQmrkuAAAAAElFTkSuQmCC
 #macro(view)
   #set($discard = $xwiki.ssx.use('Macros.SavedListExporterApplication'))
   #set($discard = $xwiki.jsx.use('Macros.SavedListExporterApplication'))
+  
+  = $msg.get('sl_export_app.messages.table.title') =
 
-  {{html}}
+  {{html wiki="true"}}
   &lt;table&gt;
   #set($objs = $doc.getObjects('Macros.SavedListExporterApplicationClass'))
   #foreach($obj in $objs)
@@ -1175,14 +1174,16 @@ ATCtrRXQmrkuAAAAAElFTkSuQmCC
   &lt;/table&gt;
 
   &lt;form method="post" action="$doc.getURL('view')"&gt;
-  &lt;input type="hidden" name="action" value="add" /&gt;
-  &lt;input type="text" name="value" id="value_input"/&gt;
-  &lt;input type="submit" value="$msg.get('sl_export_app.messages.btadd')" /&gt;
-  &lt;/form&gt; 
-
+    &lt;input type="hidden" name="action" value="add"/&gt;
+    &lt;p&gt;&lt;input type="text" name="value" id="value_input" size="60"/&gt;
+    &lt;input type="submit" value="$msg.get('sl_export_app.messages.btadd')" class="button"/&gt;&lt;/p&gt;
+  &lt;/form&gt;
+  
+  = $msg.get('sl_export_app.messages.export.title') =
+   
   &lt;form method="get" action="$doc.getURL('view')"&gt;
-  &lt;input type="hidden" name="action" value="export" /&gt;
-  &lt;input type="submit" value="$msg.get('sl_export_app.messages.export')" /&gt;
+    &lt;input type="hidden" name="action" value="export" /&gt;
+    &lt;p&gt;&lt;input type="submit" value="$msg.get('sl_export_app.messages.export')" class="button"/&gt;&lt;/p&gt;
   &lt;/form&gt;
   {{/html}}
 
@@ -1201,13 +1202,8 @@ ATCtrRXQmrkuAAAAAElFTkSuQmCC
   $export.export()
 #end
 
-{{/velocity}}</code>
-</property>
-<property>
-<contentDescription></contentDescription>
-</property>
-<property>
-<contentType>No content</contentType>
+{{/velocity}}
+</code></property><property><contentDescription></contentDescription></property><property><contentType>No content</contentType>
 </property>
 <property>
 <defaultCategory>Export</defaultCategory>
