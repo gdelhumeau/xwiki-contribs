@@ -10,9 +10,9 @@
 <author>XWiki.Admin</author>
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1354112728000</creationDate>
-<date>1354112728000</date>
-<contentUpdateDate>1354112728000</contentUpdateDate>
+<creationDate>1354212093000</creationDate>
+<date>1354212093000</date>
+<contentUpdateDate>1354212093000</contentUpdateDate>
 <version>1.1</version>
 <title>Saved List Exporter Application Translations</title>
 <template></template>
@@ -32,4 +32,5 @@ sl_export_app.messages.btremove=Remove
 sl_export_app.messages.btadd=Add a new value
 sl_export_app.messages.not_a_document=is not a valid document!
 sl_export_app.messages.export=Export
-sl_export_app.messages.export.title=Export</content></xwikidoc>
+sl_export_app.messages.export.title=Export
+sl_export_app.messages.export.filename=Name of the generated XAR:</content></xwikidoc>

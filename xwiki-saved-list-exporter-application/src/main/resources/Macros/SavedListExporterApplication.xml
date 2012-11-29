@@ -10,9 +10,9 @@
 <author>XWiki.Admin</author>
 <customClass></customClass>
 <contentAuthor>XWiki.Admin</contentAuthor>
-<creationDate>1354113223000</creationDate>
-<date>1354113223000</date>
-<contentUpdateDate>1354113223000</contentUpdateDate>
+<creationDate>1354212308000</creationDate>
+<date>1354212308000</date>
+<contentUpdateDate>1354212308000</contentUpdateDate>
 <version>1.1</version>
 <title>Saved List Exporter Application</title>
 <template></template>
@@ -1202,7 +1202,7 @@ SUVORK5CYII=
     #if("$!request.ajax"=="1")
       OK
     #else
-      $response.sendRedirect($doc.getURL('view'))
+      $response.sendRedirect("${doc.getURL('view')}#export_form")
     #end
   #end
 #end
@@ -1292,9 +1292,13 @@ SUVORK5CYII=
   &lt;/form&gt;
   
   = $msg.get('sl_export_app.messages.export.title') =
-   
-  &lt;form method="get" action="$doc.getURL('view')"&gt;
+  &lt;a name="export_form"&gt;&lt;/a&gt; 
+  &lt;form method="get" action="$doc.getURL('view')" class="xform"&gt;
     &lt;input type="hidden" name="action" value="export" /&gt;
+    &lt;dl&gt;
+      &lt;dt&gt;&lt;label for="export_filename"&gt;$msg.get('sl_export_app.messages.export.filename')&lt;/label&gt;&lt;/dt&gt;
+      &lt;dd&gt;&lt;input type="text" id="export_filename" name="filename" value="" style="width: 30%;"/&gt;&lt;/dd&gt;
+    &lt;/dl&gt;
     &lt;p&gt;&lt;input type="submit" value="$msg.get('sl_export_app.messages.export')" class="button"/&gt;&lt;/p&gt;
   &lt;/form&gt;
   {{/html}}
@@ -1305,7 +1309,11 @@ SUVORK5CYII=
 #macro(export)
   #set($export = $xwiki.package)
   #set($discard = $export.setWithVersions(false))
-  #set($discard = $export.setName("$doc.getName()-sl_export_app"))
+  #if($request.filename)
+    #set($discard = $export.setName("$request.filename"))
+  #else
+    #set($discard = $export.setName("$doc.getFullName()-sl_export_app"))
+  #end
   #set($objs = $doc.getObjects('Macros.SavedListExporterApplicationClass'))
   #foreach($obj in $objs)
     #set($discard = $export.add($obj.get('document'), 0))
