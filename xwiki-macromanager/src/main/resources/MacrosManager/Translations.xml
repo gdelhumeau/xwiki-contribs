@@ -63,4 +63,5 @@ macrosmanager.name = Name
 macrosmanager.description = Description
 macrosmanager.visibility = Visibility
 macrosmanager.link = Edit link
+macrosmanager.emptyvalue=-
 </content></xwikidoc>

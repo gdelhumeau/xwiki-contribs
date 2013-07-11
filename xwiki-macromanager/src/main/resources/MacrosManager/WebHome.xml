@@ -154,7 +154,7 @@
 <configureGlobally>1</configureGlobally>
 </property>
 <property>
-<displayInSection>macrosmanager</displayInSection>
+<displayInSection>MacrosManager</displayInSection>
 </property>
 <property>
 <heading>Macros Manager</heading>
