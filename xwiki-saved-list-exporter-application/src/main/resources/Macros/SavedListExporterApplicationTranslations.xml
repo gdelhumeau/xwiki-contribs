@@ -22,6 +22,41 @@
 <minorEdit>false</minorEdit>
 <syntaxId>xwiki/2.1</syntaxId>
 <hidden>false</hidden>
+<object>
+<class>
+<name>XWiki.TranslationDocumentClass</name>
+<customClass></customClass>
+<customMapping></customMapping>
+<defaultViewSheet></defaultViewSheet>
+<defaultEditSheet></defaultEditSheet>
+<defaultWeb></defaultWeb>
+<nameField></nameField>
+<validationScript></validationScript>
+<scope>
+<cache>0</cache>
+<disabled>0</disabled>
+<displayType>select</displayType>
+<multiSelect>0</multiSelect>
+<name>scope</name>
+<number>1</number>
+<prettyName>Scope</prettyName>
+<relationalStorage>0</relationalStorage>
+<separator> </separator>
+<separators> ,|</separators>
+<size>1</size>
+<unmodifiable>0</unmodifiable>
+<values>GLOBAL|WIKI|USER|ON_DEMAND</values>
+<classType>com.xpn.xwiki.objects.classes.StaticListClass</classType>
+</scope>
+</class>
+<name>Macros.SavedListExporterApplicationTranslations</name>
+<number>0</number>
+<className>XWiki.TranslationDocumentClass</className>
+<guid>35d98814-c6c2-4c8e-8105-a1bc1ff000d7</guid>
+<property>
+<scope>WIKI</scope>
+</property>
+</object>
 <content>sl_export_app.messages.table.title=List of documents to export
 sl_export_app.messages.confirmremove=Are you sure to remove the following element from the list:
 sl_export_app.messages.confirm.yes=Yes
